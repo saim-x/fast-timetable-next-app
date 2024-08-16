@@ -1,113 +1,503 @@
-import Image from "next/image";
+// // src/app/page.tsx
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+// "use client";
+// import { useState } from 'react';
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+// const HomePage = () => {
+//   const [section, setSection] = useState('');
+//   const [output, setOutput] = useState('');
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+//   const handleSubmit = async (e: React.FormEvent) => {
+//     e.preventDefault();
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+//     const response = await fetch('/api/timetable', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({ section }),
+//     });
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+//     const data = await response.json();
+//     if (response.ok) {
+//       setOutput(data.output);
+//     } else {
+//       setOutput(`Error: ${data.error}`);
+//     }
+//   };
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+//   return (
+//     <div className="container mx-auto p-4">
+//       <h1 className="text-2xl font-bold mb-4 ">Timetable Filter</h1>
+//       <form onSubmit={handleSubmit} className="mb-4">
+//         <label htmlFor="section" className="block mb-2 text-lg text-black">Enter Section:</label>
+//         <input
+//           id="section"
+//           type="text"
+//           value={section}
+//           onChange={(e) => setSection(e.target.value)}
+//           className="border p-2 w-full mb-2"
+//           required
+//         />
+//         <button type="submit" className="bg-blue-500 text-white p-2 rounded">Get Timetable</button>
+//       </form>
+//       <pre className="whitespace-pre-wrap bg-gray-100 p-4 border rounded">{output}</pre>
+//     </div>
+//   );
+// };
+
+// export default HomePage;
+
+// src/app/page.tsx
+
+// "use client";
+// import { useState } from 'react';
+
+// const HomePage = () => {
+//   const [section, setSection] = useState('');
+//   const [timetable, setTimetable] = useState<Record<string, any[]> | null>(null);
+//   const [error, setError] = useState<string | null>(null);
+
+//   const handleSubmit = async (e: React.FormEvent) => {
+//     e.preventDefault();
+
+//     try {
+//       const response = await fetch('/api/timetable', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ section }),
+//       });
+
+//       const data = await response.json();
+//       if (response.ok) {
+//         setTimetable(data.timetable);
+//         setError(null);
+//       } else {
+//         setError(data.error);
+//         setTimetable(null);
+//       }
+//     } catch (err) {
+//       setError('An error occurred');
+//       setTimetable(null);
+//     }
+//   };
+
+//   const renderTable = (data: any[]) => (
+//     <table className="min-w-full border-collapse border border-gray-200">
+//       <thead>
+//         <tr>
+//           <th className="border border-gray-300 p-2">Location</th>
+//           <th className="border border-gray-300 p-2">Timing</th>
+//           <th className="border border-gray-300 p-2">Course</th>
+//           <th className="border border-gray-300 p-2">Instructor</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+//         {data.map((item, index) => (
+//           <tr key={index}>
+//             <td className="border border-gray-300 p-2">{item.location}</td>
+//             <td className="border border-gray-300 p-2">{item.timing}</td>
+//             <td className="border border-gray-300 p-2">{item.course}</td>
+//             <td className="border border-gray-300 p-2">{item.instructor}</td>
+//           </tr>
+//         ))}
+//       </tbody>
+//     </table>
+//   );
+
+//   return (
+//     <div className="container mx-auto p-4">
+//       <h1 className="text-2xl font-bold mb-4">Timetable Filter</h1>
+//       <form onSubmit={handleSubmit} className="mb-4">
+//         <label htmlFor="section" className="block mb-2 text-lg text-black">Enter Section:</label>
+//         <input
+//           id="section"
+//           type="text"
+//           value={section}
+//           onChange={(e) => setSection(e.target.value)}
+//           className="border p-2 w-full mb-2"
+//           required
+//         />
+//         <button type="submit" className="bg-blue-500 text-white p-2 rounded">Get Timetable</button>
+//       </form>
+//       {error && <p className="text-red-500">{error}</p>}
+//       {timetable && (
+//         <>
+//           {Object.entries(timetable).map(([day, data]) => (
+//             <div key={day} className="mb-6">
+//               <h2 className="text-xl font-bold mb-2">{day}</h2>
+//               {renderTable(data)}
+//             </div>
+//           ))}
+//         </>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default HomePage;
+// "use client";
+// import { useState } from 'react';
+
+// const HomePage = () => {
+//   const [section, setSection] = useState('');
+//   const [timetable, setTimetable] = useState<Record<string, any[]> | null>(null);
+//   const [error, setError] = useState<string | null>(null);
+
+//   const handleSubmit = async (e: React.FormEvent) => {
+//     e.preventDefault();
+
+//     try {
+//       const response = await fetch('/api/timetable', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ section }),
+//       });
+
+//       const data = await response.json();
+//       if (response.ok) {
+//         setTimetable(data.timetable);
+//         setError(null);
+//       } else {
+//         setError(data.error);
+//         setTimetable(null);
+//       }
+//     } catch (err) {
+//       setError('An error occurred');
+//       setTimetable(null);
+//     }
+//   };
+
+//   const renderTable = (data: any[]) => (
+//     <table className="w-full bg-white border border-gray-300 rounded-lg shadow-md">
+//       <thead>
+//         <tr className="bg-blue-500 text-white">
+//           <th className="border-b p-4">Location</th>
+//           <th className="border-b p-4">Timing</th>
+//           <th className="border-b p-4">Course</th>
+//           <th className="border-b p-4">Instructor</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+//         {data.map((item, index) => (
+//           <tr key={index} className="hover:bg-gray-100">
+//             <td className="border-b p-4">{item.location}</td>
+//             <td className="border-b p-4">{item.timing}</td>
+//             <td className="border-b p-4">{item.course}</td>
+//             <td className="border-b p-4">{item.instructor}</td>
+//           </tr>
+//         ))}
+//       </tbody>
+//     </table>
+//   );
+
+//   return (
+//     <div className="container mx-auto p-6 bg-gray-50 min-h-screen">
+//       <h1 className="text-3xl font-extrabold text-gray-800 mb-6">Timetable Filter</h1>
+//       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg mb-6">
+//         <label htmlFor="section" className="block text-lg font-medium text-gray-700 mb-2">Enter Section:</label>
+//         <input
+//           id="section"
+//           type="text"
+//           value={section}
+//           onChange={(e) => setSection(e.target.value)}
+//           className="border border-gray-300 rounded-lg p-3 w-full mb-4 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+//           required
+//         />
+//         <button type="submit" className="bg-blue-600 text-white p-3 rounded-lg shadow hover:bg-blue-700 transition duration-200">Get Timetable</button>
+//       </form>
+//       {error && <p className="text-red-600 text-lg font-medium">{error}</p>}
+//       {timetable && (
+//         <>
+//           {Object.entries(timetable).map(([day, data]) => (
+//             <div key={day} className="mb-8">
+//               <h2 className="text-2xl font-semibold text-gray-800 mb-4">{day}</h2>
+//               {renderTable(data)}
+//             </div>
+//           ))}
+//         </>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default HomePage;
+
+//WITH RESPONSIVE DESIGN
+
+// "use client";
+// import { useState } from "react";
+// import Router from "next/router";
+// const HomePage = () => {
+//   const [section, setSection] = useState("");
+//   const [timetable, setTimetable] = useState<Record<string, any[]> | null>(
+//     null
+//   );
+//   const [error, setError] = useState<string | null>(null);
+//   const router = Router;
+//   const handleSubmit = async (e: React.FormEvent) => {
+//     e.preventDefault();
+
+//     try {
+//       const response = await fetch("/api/timetable", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ section }),
+//       });
+
+//       const data = await response.json();
+//       if (response.ok) {
+//         setTimetable(data.timetable);
+//         setError(null);
+//       } else {
+//         setError(data.error);
+//         setTimetable(null);
+//       }
+//     } catch (err) {
+//       setError("An error occurred");
+//       setTimetable(null);
+//     }
+//   };
+
+//   const renderTable = (data: any[]) => (
+//     <table className="w-full bg-white border border-gray-300 rounded-lg shadow-md overflow-x-auto">
+//       <thead>
+//         <tr className="bg-blue-500 text-white text-left">
+//           <th className="border-b p-2 sm:p-4">Location</th>
+//           <th className="border-b p-2 sm:p-4">Timing</th>
+//           <th className="border-b p-2 sm:p-4">Course</th>
+//           <th className="border-b p-2 sm:p-4">Instructor</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+//         {data.map((item, index) => (
+//           <tr key={index} className="hover:bg-gray-100">
+//             <td className="border-b p-2 sm:p-4">{item.location}</td>
+//             <td className="border-b p-2 sm:p-4">{item.timing}</td>
+//             <td className="border-b p-2 sm:p-4">{item.course}</td>
+//             <td className="border-b p-2 sm:p-4">{item.instructor}</td>
+//           </tr>
+//         ))}
+//       </tbody>
+//     </table>
+//   );
+
+//   return (
+//     <div className="container mx-auto p-4 sm:p-6 bg-gray-50 min-h-screen">
+//       <header className="flex flex-col sm:flex-row justify-between items-center mb-6 p-4 sm:p-6 bg-white shadow-md rounded-lg">
+//         <h1
+//           className="text-2xl sm:text-3xl font-extrabold mb-4 sm:mb-0 cursor-pointer"
+//           onClick={() => window.location.reload()}
+          
+//         >
+//           <span className="gradient-text">FAST</span> Timetable Filter.
+//         </h1>
+//         <a
+//           href="https://github.com/saim-x"
+//           target="_blank"
+//           className="text-sm sm:text-base text-blue-600 hover:underline"
+//         >
+//           About the Developer
+//         </a>
+//       </header>
+
+//       <form
+//         onSubmit={handleSubmit}
+//         className="bg-white p-4 sm:p-6 rounded-lg shadow-lg mb-6"
+//       >
+//         <label
+//           htmlFor="section"
+          
+//           className="block text-base sm:text-lg font-medium text-gray-700 mb-2"
+//         >
+//           Enter Section:
+//         </label>
+//         <input
+//           id="section"
+//           type="text"
+//           placeholder="e.g. BCS-3A"
+//           value={section}
+//           onChange={(e) => setSection(e.target.value)}
+//           className="border border-gray-300 rounded-lg p-2 sm:p-3 w-full mb-4 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+//           required
+//         />
+//         <button
+//           type="submit"
+//           className="bg-blue-600 text-white p-2 sm:p-3 rounded-lg shadow hover:bg-blue-700 transition duration-200"
+//         >
+//           Get Timetable
+//         </button>
+//       </form>
+//       {error && (
+//         <p className="text-red-600 text-base sm:text-lg font-medium mb-4">
+//           {error}
+//         </p>
+//       )}
+//       {timetable && (
+//         <>
+//           {Object.entries(timetable).map(([day, data]) => (
+//             <section key={day} className="mb-6 sm:mb-8">
+//               <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
+//                 {day}
+//               </h2>
+//               {renderTable(data)}
+//             </section>
+//           ))}
+//         </>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default HomePage;
+
+//WITH SCREENSHOT FUNCTIONALITY
+"use client";
+import { useState, useRef } from "react";
+import Router from "next/router";
+import html2canvas from "html2canvas";
+import { GrInstallOption } from "react-icons/gr";
+
+const HomePage = () => {
+  const [section, setSection] = useState("");
+  const [timetable, setTimetable] = useState<Record<string, any[]> | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const screenshotRef = useRef<HTMLDivElement>(null);
+  const router = Router;
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/api/timetable", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ section }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setTimetable(data.timetable);
+        setError(null);
+      } else {
+        setError(data.error);
+        setTimetable(null);
+      }
+    } catch (err) {
+      setError("An error occurred");
+      setTimetable(null);
+    }
+  };
+
+  const downloadScreenshot = async () => {
+    if (screenshotRef.current) {
+      const canvas = await html2canvas(screenshotRef.current);
+      const imgData = canvas.toDataURL("image/png");
+
+      const link = document.createElement('a');
+      link.href = imgData;
+      link.download = 'timetable.png'; 
+
+      document.body.appendChild(link);
+      link.click();
+
+      document.body.removeChild(link);
+    }
+  };
+
+  const renderTable = (data: any[]) => (
+    <table className="w-full bg-white border border-gray-300 rounded-lg shadow-md overflow-x-auto">
+      <thead>
+        <tr className="bg-blue-500 text-white text-left">
+          <th className="border-b p-2 sm:p-4">Location</th>
+          <th className="border-b p-2 sm:p-4">Timing</th>
+          <th className="border-b p-2 sm:p-4">Course</th>
+          <th className="border-b p-2 sm:p-4">Instructor</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item, index) => (
+          <tr key={index} className="hover:bg-gray-100">
+            <td className="border-b p-2 sm:p-4">{item.location}</td>
+            <td className="border-b p-2 sm:p-4">{item.timing}</td>
+            <td className="border-b p-2 sm:p-4">{item.course}</td>
+            <td className="border-b p-2 sm:p-4">{item.instructor}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
-}
+
+  return (
+    <div className="container mx-auto p-4 sm:p-6 bg-gray-50 min-h-screen">
+      <header className="flex flex-col sm:flex-row justify-between items-center mb-6 p-4 sm:p-6 bg-white shadow-md rounded-lg">
+        <h1
+          className="text-2xl sm:text-3xl font-extrabold mb-4 sm:mb-0 cursor-pointer"
+          onClick={() => window.location.reload()}
+        >
+          <span className="gradient-text">FAST</span> Timetable Filter.
+        </h1>
+        <a
+          href="https://github.com/saim-x"
+          target="_blank"
+          className="text-sm sm:text-base text-blue-600 hover:underline"
+        >
+          About the Developer
+        </a>
+      </header>
+
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-4 sm:p-6 rounded-lg shadow-lg mb-6"
+      >
+        <label
+          htmlFor="section"
+          className="block text-base sm:text-lg font-medium text-gray-700 mb-2"
+        >
+          Enter Section:
+        </label>
+        <input
+          id="section"
+          type="text"
+          placeholder="e.g. BCS-3A"
+          value={section}
+          onChange={(e) => setSection(e.target.value)}
+          className="border border-gray-300 rounded-lg p-2 sm:p-3 w-full mb-4 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white p-2 sm:p-3 rounded-lg shadow hover:bg-blue-700 transition duration-200"
+        >
+          Get Timetable
+        </button>
+      </form>
+      {error && (
+        <p className="text-red-600 text-base sm:text-lg font-medium mb-4">
+          {error}
+        </p>
+      )}
+      {timetable && (
+        <>
+          <button
+            onClick={downloadScreenshot}
+            className="bg-green-600 text-white p-2 sm:p-3 rounded-lg shadow flex  gap-2 items-center hover:bg-green-700 transition duration-200 mb-6"
+          >
+            Download Timetable
+            <GrInstallOption />
+          </button>
+          <div ref={screenshotRef} className="mb-6">
+            {Object.entries(timetable).map(([day, data]) => (
+              <section key={day} className="mb-6 sm:mb-8">
+                <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
+                  {day}
+                </h2>
+                {renderTable(data)}
+              </section>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default HomePage;
