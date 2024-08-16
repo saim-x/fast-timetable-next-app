@@ -463,7 +463,7 @@ export async function POST(req: NextRequest) {
                 for (let j = 0; j < processedData[i].length; j++) {
                     const cell = processedData[i][j];
                     if (cell && cell.includes(section)) {
-                        const [course, instructor] = cell.split('\n').map(str => str.trim());
+                        const [course, instructor] = cell.split('\n').map((str: string) => str.trim());
                         const timing = standardizeTime(timings[j]);
                         filteredData.push({
                             location: locations[i] || 'Unknown',
