@@ -396,7 +396,7 @@ const convertTo24Hour = (time: string) => {
     if (hours < 8) {
         hours24 += 12; 
     } else if (hours === 12) {
-        hours24 = 0; // Midnight case
+        hours24 = 12; // Midnight case
     }
 
     return hours24 * 100 + minutes; 
