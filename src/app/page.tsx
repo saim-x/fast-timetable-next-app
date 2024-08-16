@@ -286,7 +286,7 @@
 //         <h1
 //           className="text-2xl sm:text-3xl font-extrabold mb-4 sm:mb-0 cursor-pointer"
 //           onClick={() => window.location.reload()}
-          
+
 //         >
 //           <span className="gradient-text">FAST</span> Timetable Filter.
 //         </h1>
@@ -305,7 +305,7 @@
 //       >
 //         <label
 //           htmlFor="section"
-          
+
 //           className="block text-base sm:text-lg font-medium text-gray-700 mb-2"
 //         >
 //           Enter Section:
@@ -394,7 +394,7 @@ const HomePage = () => {
 
       const link = document.createElement('a');
       link.href = imgData;
-      link.download = 'timetable.png'; 
+      link.download = 'timetable.png';
 
       document.body.appendChild(link);
       link.click();
@@ -402,29 +402,32 @@ const HomePage = () => {
       document.body.removeChild(link);
     }
   };
-
   const renderTable = (data: any[]) => (
-    <table className="w-full bg-white border border-gray-300 rounded-lg shadow-md overflow-x-auto">
+    <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
       <thead>
-        <tr className="bg-blue-500 text-white text-left">
-          <th className="border-b p-2 sm:p-4">Location</th>
-          <th className="border-b p-2 sm:p-4">Timing</th>
-          <th className="border-b p-2 sm:p-4">Course</th>
-          <th className="border-b p-2 sm:p-4">Instructor</th>
+        <tr className="bg-gray-100 border-b border-gray-200">
+          <th className="px-4 py-2 text-left">Location</th>
+          <th className="px-4 py-2 text-left">Timing</th>
+          <th className="px-4 py-2 text-left">Course</th>
+          <th className="px-4 py-2 text-left">Instructor</th>
         </tr>
       </thead>
       <tbody>
         {data.map((item, index) => (
-          <tr key={index} className="hover:bg-gray-100">
-            <td className="border-b p-2 sm:p-4">{item.location}</td>
-            <td className="border-b p-2 sm:p-4">{item.timing}</td>
-            <td className="border-b p-2 sm:p-4">{item.course}</td>
-            <td className="border-b p-2 sm:p-4">{item.instructor}</td>
+          <tr key={index} className="border-b border-gray-200">
+            <td className="px-4 py-2">{item.location}</td>
+            <td className="px-4 py-2">{item.start}</td>
+            <td className="px-4 py-2">{item.course}</td>
+            <td className="px-4 py-2">{item.instructor}</td>
           </tr>
         ))}
       </tbody>
     </table>
   );
+
+
+
+
 
   return (
     <div className="container mx-auto p-4 sm:p-6 bg-gray-50 min-h-screen">
