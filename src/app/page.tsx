@@ -663,7 +663,7 @@ import { useState, useRef } from "react";
 import Router from "next/router";
 import html2canvas from "html2canvas";
 import { GrInstallOption } from "react-icons/gr";
-
+import { FiInfo } from "react-icons/fi";
 const HomePage = () => {
   const [section, setSection] = useState("");
   const [timetable, setTimetable] = useState<Record<string, any[]> | null>(null);
@@ -777,6 +777,10 @@ const HomePage = () => {
           className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 mb-4"
           required
         />
+        <div className="flex items-center space-x-2 p-3 border border-gray-200 rounded-md bg-gray-100 mb-4 text-gray-600 text-xs">
+          <FiInfo className="text-gray-400" />
+          <p>To add elective courses, add sections followed by comma</p>
+        </div>
         <button
           type="submit"
           className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition duration-200"
