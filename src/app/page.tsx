@@ -504,6 +504,160 @@
 
 
 //WITH REDESIGNED DESIGN
+// "use client";
+// import { useState, useRef } from "react";
+// import Router from "next/router";
+// import html2canvas from "html2canvas";
+// import { GrInstallOption } from "react-icons/gr";
+
+// const HomePage = () => {
+//   const [section, setSection] = useState("");
+//   const [timetable, setTimetable] = useState<Record<string, any[]> | null>(null);
+//   const [error, setError] = useState<string | null>(null);
+//   const screenshotRef = useRef<HTMLDivElement>(null);
+//   const router = Router;
+
+//   const handleSubmit = async (e: React.FormEvent) => {
+//     e.preventDefault();
+
+//     try {
+//       const response = await fetch("/api/timetable", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ section }),
+//       });
+
+//       const data = await response.json();
+//       if (response.ok) {
+//         setTimetable(data.timetable);
+//         setError(null);
+//       } else {
+//         setError(data.error);
+//         setTimetable(null);
+//       }
+//     } catch (err) {
+//       setError("An error occurred");
+//       setTimetable(null);
+//     }
+//   };
+
+//   const downloadScreenshot = async () => {
+//     if (screenshotRef.current) {
+//       const canvas = await html2canvas(screenshotRef.current);
+//       const imgData = canvas.toDataURL("image/png");
+
+//       const link = document.createElement("a");
+//       link.href = imgData;
+//       link.download = "timetable.png";
+
+//       document.body.appendChild(link);
+//       link.click();
+//       document.body.removeChild(link);
+//     }
+//   };
+
+//   const renderTable = (data: any[]) => (
+//     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+//       {data.map((item, index) => (
+//         <div
+//           key={index}
+//           className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition duration-300"
+//         >
+//           <div className="p-4">
+//             <p className="font-bold text-lg text-indigo-600 mb-2">{item.course}</p>
+//             <p className="text-gray-600">Location: {item.location}</p>
+//             <p className="text-gray-600">Timing: {item.start}</p>
+//             <p className="text-gray-600">Instructor: {item.instructor}</p>
+//           </div>
+//         </div>
+//       ))}
+//     </div>
+//   );
+
+//   return (
+//     <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-6 text-gray-800">
+//       <header className="w-full max-w-5xl mx-auto mb-8">
+//         <div className="flex justify-between items-center bg-white text-gray-800 rounded-lg shadow-lg p-6">
+//           <h1
+//             className="text-3xl font-extrabold cursor-pointer"
+//             onClick={() => window.location.reload()}
+//           >
+//             FAST Timetable Filter
+//           </h1>
+//           <a
+//             href="https://github.com/saim-x"
+//             target="_blank"
+//             className="text-blue-600 hover:text-blue-800 transition duration-200"
+//           >
+//             About the Developer
+//           </a>
+//         </div>
+//       </header>
+
+//       <form
+//         onSubmit={handleSubmit}
+//         className="w-full max-w-md bg-white text-gray-800 rounded-lg shadow-lg p-8 mb-8"
+//       >
+//         <label
+//           htmlFor="section"
+//           className="block text-lg font-semibold mb-4"
+//         >
+//           Enter Section:
+//         </label>
+//         <input
+//           id="section"
+//           type="text"
+//           placeholder="e.g. BCS-3A"
+//           value={section}
+//           onChange={(e) => setSection(e.target.value)}
+//           className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 mb-4"
+//           required
+//         />
+//         <button
+//           type="submit"
+//           className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition duration-200"
+//         >
+//           Get Timetable
+//         </button>
+//       </form>
+
+//       {error && (
+//         <p className="bg-red-600 text-white py-3 px-6 rounded-lg mb-6">
+//           {error}
+//         </p>
+//       )}
+
+//       {timetable && (
+//         <>
+//           <button
+//             onClick={downloadScreenshot}
+//             className="flex items-center bg-green-600 text-white py-3 px-6 rounded-lg mb-8 hover:bg-green-700 transition duration-200"
+//           >
+//             Download Timetable <GrInstallOption className="ml-2" />
+//           </button>
+
+//           <div ref={screenshotRef} className="w-full max-w-5xl mx-auto">
+//             {Object.entries(timetable).map(([day, data]) => (
+//               <section key={day} className="mb-12">
+//                 <h2 className="text-2xl font-semibold mb-4">{day}</h2>
+//                 {renderTable(data)}
+//               </section>
+//             ))}
+//           </div>
+//         </>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default HomePage;
+
+
+
+
+
+
+//WITH TWO SECTIONS
 "use client";
 import { useState, useRef } from "react";
 import Router from "next/router";
@@ -519,14 +673,23 @@ const HomePage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
+    // Clean the input: remove trailing commas, consecutive commas, and trim each section
+    const cleanedSections = section
+      .split(',')
+      .map((s) => s.trim())
+      .filter((s) => s !== ''); // Remove empty strings
+  
+    // Join the cleaned sections back into a single string separated by commas
+    const cleanedSection = cleanedSections.join(',');
+  
     try {
       const response = await fetch("/api/timetable", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section }),
+        body: JSON.stringify({ section: cleanedSection }),
       });
-
+  
       const data = await response.json();
       if (response.ok) {
         setTimetable(data.timetable);
@@ -540,6 +703,7 @@ const HomePage = () => {
       setTimetable(null);
     }
   };
+  
 
   const downloadScreenshot = async () => {
     if (screenshotRef.current) {
@@ -607,7 +771,7 @@ const HomePage = () => {
         <input
           id="section"
           type="text"
-          placeholder="e.g. BCS-3A"
+          placeholder="e.g. BCS-3A or BCS-3A, BCS-3B"
           value={section}
           onChange={(e) => setSection(e.target.value)}
           className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 mb-4"
