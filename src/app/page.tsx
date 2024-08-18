@@ -673,23 +673,23 @@ const HomePage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     // Clean the input: remove trailing commas, consecutive commas, and trim each section
     const cleanedSections = section
       .split(',')
       .map((s) => s.trim())
       .filter((s) => s !== ''); // Remove empty strings
-  
+
     // Join the cleaned sections back into a single string separated by commas
     const cleanedSection = cleanedSections.join(',');
-  
+
     try {
       const response = await fetch("/api/timetable", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ section: cleanedSection }),
       });
-  
+
       const data = await response.json();
       if (response.ok) {
         setTimetable(data.timetable);
@@ -703,7 +703,7 @@ const HomePage = () => {
       setTimetable(null);
     }
   };
-  
+
 
   const downloadScreenshot = async () => {
     if (screenshotRef.current) {
@@ -777,9 +777,12 @@ const HomePage = () => {
           className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 mb-4"
           required
         />
-        <div className="flex items-center space-x-2 p-3 border border-gray-200 rounded-md bg-gray-100 mb-4 text-gray-600 text-xs">
-          <FiInfo className="text-gray-400" />
-          <p>To add elective courses, add sections followed by comma</p>
+        <div className="p-3 border border-gray-200 rounded-md bg-gray-100 mb-4 text-gray-600 text-xs">
+          <div className="flex items-center space-x-2">
+            <FiInfo className="text-gray-400" />
+            <p>To add elective courses, add sections followed by comma.</p>
+          </div>
+          <p className="mt-2">Last updated at 18.8.24 11:11 PM</p>
         </div>
         <button
           type="submit"
