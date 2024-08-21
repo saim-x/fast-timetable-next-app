@@ -782,7 +782,7 @@ const HomePage = () => {
             <FiInfo className="text-gray-400" />
             <p>To add elective courses, add sections followed by comma.</p>
           </div>
-          <p className="mt-2">Last updated at 19.8.24 08:16 PM</p>
+          <p className="mt-2">Last updated at 21.8.24 11:15 PM</p>
         </div>
         <button
           type="submit"
