@@ -766,7 +766,7 @@ const HomePage = () => {
           htmlFor="section"
           className="block text-lg font-semibold mb-4"
         >
-          Enter Section:
+          Enter Section (All BS Programs):
         </label>
         <input
           id="section"
@@ -782,7 +782,7 @@ const HomePage = () => {
             <FiInfo className="text-gray-400" />
             <p>To add elective courses, add sections followed by comma.</p>
           </div>
-          <p className="mt-2">Last updated at 21.8.24 11:15 PM</p>
+          <p className="mt-2">Last updated at 9.2.24 11:06 PM</p>
         </div>
         <button
           type="submit"

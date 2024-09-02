@@ -545,7 +545,7 @@ export async function POST(req: NextRequest) {
     const sections = section.split(',').map((s: string) => s.trim());
 
     try {
-        const filePath = path.resolve(process.cwd(), 'public', 'timetable4.xlsx');
+        const filePath = path.resolve(process.cwd(), 'public', 'timetable5.xlsx');
         console.log(`Reading file from: ${filePath}`);
 
         if (!fs.existsSync(filePath)) {
